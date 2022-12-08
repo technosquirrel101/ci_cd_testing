@@ -1,0 +1,86 @@
+version: "3.6"
+
+volumes:
+  ocpp-db-data:
+    external: false
+  node-red-data:
+    external: false
+  everest-config-data:
+    external: false
+
+networks:
+  testing_network:
+    driver: bridge
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.33.1.0/24
+          gateway: 172.33.1.1
+        - subnet: "FE80::/64"
+          gateway: "FE80::1"
+
+services:
+  mqtt-server:
+    image: eclipse-mosquitto:2.0.10
+    networks:
+      testing_network:
+        ipv4_address: 172.33.1.41
+    ports:
+      - 1883:1883
+      - 9001:9001
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+
+  ocpp-db:
+    image: mariadb:10.4
+    networks:
+      testing_network:
+        ipv4_address: 172.33.1.42
+    volumes:
+      - ocpp-db-data:/var/lib/mysql
+    ports:
+      - 13306:3306
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      MYSQL_DATABASE: ocpp-db
+      MYSQL_USER: ocpp
+      MYSQL_PASSWORD: ocpp
+
+  steve:
+    build: ./steve
+    networks:
+      testing_network:
+        ipv4_address: 172.33.1.43
+    ports:
+      - 8180:8180
+      - 8443:8443
+    depends_on:
+      - ocpp-db
+
+  nodered:
+    image: nodered/node-red
+    networks:
+      testing_network:
+        ipv4_address: 172.33.1.44
+    volumes:
+      - node-red-data:/data
+    depends_on:
+      - mqtt-server
+
+  EVerest-test:
+    image: everest-test-image:latest
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0
+    networks:
+      testing_network:
+        ipv4_address: 172.33.1.45
+        # ipv6_address: "FE80::10"
+    volumes:
+      - everest-config-data:/everest-config-data
+    ports:
+      - 8849:8849
+    links:
+      - "mqtt-server:localhost"
+    command: /bin/bash -c "/checkout/entrypoint.sh"
+      
