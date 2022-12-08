@@ -8,4 +8,4 @@ jobs:
       - name: Build the EVerest stack
         run: docker-compose up -d
       - name: Test
-        run: docker run --rm everest-testing
+        run: docker run --rm ci_cd_testing_everest-testing:latest
