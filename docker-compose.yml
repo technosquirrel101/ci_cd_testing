@@ -68,6 +68,7 @@ services:
 
   EVerest-test:
     build: .
+    container_name: everest-testing
     tags:
       - "everest-testing:latest"
     sysctls:
