@@ -5,8 +5,6 @@ volumes:
     external: false
   node-red-data:
     external: false
-  everest-config-data:
-    external: false
 
 networks:
   testing_network:
@@ -30,7 +28,7 @@ services:
       - 1883:1883
       - 9001:9001
     volumes:
-      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./mosquitto/mosquitto.conf:/mosquitto/esconfig/mosquitto.conf
 
   ocpp-db:
     image: mariadb:10.4
@@ -69,18 +67,20 @@ services:
       - mqtt-server
 
   EVerest-test:
-    image: everest-test-image:latest
+    build: .
+    tags:
+      - "everest-testing:latest"
     sysctls:
       - net.ipv6.conf.all.disable_ipv6=0
     networks:
       testing_network:
         ipv4_address: 172.33.1.45
-        # ipv6_address: "FE80::10"
-    volumes:
-      - everest-config-data:/everest-config-data
     ports:
       - 8849:8849
     links:
       - "mqtt-server:localhost"
-    command: /bin/bash -c "/checkout/entrypoint.sh"
+    command: /bin/bash -c "/entrypoint.sh"
+    depends_on:
+      - mqtt-server
+      - steve
       

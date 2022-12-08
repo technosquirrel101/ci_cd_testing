@@ -16,28 +16,6 @@ RUN /bin/bash -c 'echo "export CPM_SOURCE_CACHE=/.cache/CPM" >> /root/.bashrc'
 
 # until here there solely default installation configuration, next is deployment-specific
 
-COPY ./entrypoint.sh /checkout/
+COPY ./entrypoint.sh /
 
 CMD [ "/bin/bash" ]
-
-# RUN git clone https://github.com/EVerest/everest-dev-environment.git
-
-# WORKDIR /checkout/everest-dev-environment/dependency_manager
-
-# RUN python3 -m pip install .
-
-# RUN edm --config ../everest-complete-readonly.yaml --workspace /checkout/everest-workspace
-
-# WORKDIR /checkout/everest-workspace/everest-utils/ev-dev-tools
-
-# RUN python3 -m pip install .
-
-# RUN mkdir -p /checkout/everest-workspace/everest-core/build
-
-# WORKDIR /checkout/everest-workspace/everest-core/build
-
-# RUN cmake ..
-
-# RUN make
-
-# CMD [ "/checkout/everest-workspace/everest-core/build/run-scripts/run-sil.sh" ]
