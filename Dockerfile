@@ -18,4 +18,8 @@ RUN /bin/bash -c 'echo "export CPM_SOURCE_CACHE=/.cache/CPM" >> /root/.bashrc'
 
 COPY ./entrypoint.sh /
 
+RUN chmod +x /entrypoint.sh
+
+# CMD [ "/bin/bash" ]
+
 CMD [ "/bin/bash" ]
