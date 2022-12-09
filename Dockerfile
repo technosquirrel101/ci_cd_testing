@@ -22,4 +22,4 @@ RUN chmod +x /entrypoint.sh
 
 # CMD [ "/bin/bash" ]
 
-CMD [ "/bin/bash" ]
+CMD [ "/entrypoint.sh" ]
