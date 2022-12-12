@@ -21,6 +21,7 @@ networks:
 services:
   mqtt-server:
     image: eclipse-mosquitto:2.0.10
+    container_name: mqtt-server
     networks:
       testing_network:
         ipv4_address: 172.33.1.41
@@ -32,6 +33,7 @@ services:
 
   ocpp-db:
     image: mariadb:10.4
+    container_name: ocpp-db
     networks:
       testing_network:
         ipv4_address: 172.33.1.42
@@ -47,6 +49,7 @@ services:
 
   steve:
     build: ./steve
+    container_name: steve
     networks:
       testing_network:
         ipv4_address: 172.33.1.43
@@ -58,6 +61,7 @@ services:
 
   nodered:
     image: nodered/node-red
+    container_name: nodered
     networks:
       testing_network:
         ipv4_address: 172.33.1.44
