@@ -11,6 +11,6 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
       - uses: actions/checkout@v3
       - name: Build the EVerest stack
-        run: docker-compose up --build
+        run: docker-compose up --build --force-recreate
       - name: Test
         run: docker run --rm ci_cd_testing_everest-testing:latest --entrypoint /entrypoint.sh
