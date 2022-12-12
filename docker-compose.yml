@@ -26,8 +26,8 @@ services:
       testing_network:
         ipv4_address: 172.33.1.41
     ports:
-      - 1883:1883
-      - 9001:9001
+      - "1883:1883"
+      - "9001:9001"
     volumes:
       - ./mosquitto/mosquitto.conf:/mosquitto/esconfig/mosquitto.conf
 
@@ -40,7 +40,7 @@ services:
     volumes:
       - ocpp-db-data:/var/lib/mysql
     ports:
-      - 13306:3306
+      - "13306:3306"
     environment:
       MYSQL_RANDOM_ROOT_PASSWORD: "yes"
       MYSQL_DATABASE: ocpp-db
@@ -54,8 +54,8 @@ services:
       testing_network:
         ipv4_address: 172.33.1.43
     ports:
-      - 8180:8180
-      - 8443:8443
+      - "8180:8180"
+      - "8443:8443"
     depends_on:
       - ocpp-db
 
@@ -81,7 +81,7 @@ services:
       testing_network:
         ipv4_address: 172.33.1.45
     ports:
-      - 8849:8849
+      - "8849:8849"
     links:
       - "mqtt-server:localhost"
     command: /bin/bash -c "/entrypoint.sh"
