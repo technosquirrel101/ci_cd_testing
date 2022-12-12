@@ -60,7 +60,7 @@ services:
       - ocpp-db
 
   nodered:
-    image: nodered/node-redocpp-db
+    image: nodered/node-red
     container_name: nodered
     networks:
       testing_network:
