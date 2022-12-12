@@ -22,4 +22,6 @@ RUN chmod +x /entrypoint.sh
 
 # CMD [ "/bin/bash" ]
 
-CMD [ "/entrypoint.sh" ]
+# CMD [ "/entrypoint.sh" ]
+
+CMD [ "/bin/bash", "-c", "ping 172.33.1.41" ]
