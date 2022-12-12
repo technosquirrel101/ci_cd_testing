@@ -34,4 +34,4 @@ cd /checkout/everest-workspace/everest-core/build/run-scripts/
 
 # ./run-sil.sh
 
-ping 172.33.1.41
+ping mqtt-server
