@@ -24,7 +24,7 @@ services:
     container_name: mqtt-server
     networks:
       testing_network:
-        - ipv4_address: 172.33.1.41
+        ipv4_address: 172.33.1.41
     ports:
       - 1883:1883
       - 9001:9001
@@ -36,7 +36,7 @@ services:
     container_name: ocpp-db
     networks:
       testing_network:
-        - ipv4_address: 172.33.1.42
+        ipv4_address: 172.33.1.42
     volumes:
       - ocpp-db-data:/var/lib/mysql
     ports:
@@ -52,7 +52,7 @@ services:
     container_name: steve
     networks:
       testing_network:
-        - ipv4_address: 172.33.1.43
+        ipv4_address: 172.33.1.43
     ports:
       - 8180:8180
       - 8443:8443
@@ -64,7 +64,7 @@ services:
     container_name: nodered
     networks:
       testing_network:
-        - ipv4_address: 172.33.1.44
+        ipv4_address: 172.33.1.44
     volumes:
       - node-red-data:/data
     depends_on:
@@ -79,7 +79,7 @@ services:
       - net.ipv6.conf.all.disable_ipv6=0
     networks:
       testing_network:
-        - ipv4_address: 172.33.1.45
+        ipv4_address: 172.33.1.45
     ports:
       - 8849:8849
     links:
