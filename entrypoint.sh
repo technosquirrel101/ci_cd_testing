@@ -32,6 +32,8 @@ make -j$(nproc) install
 
 cd /checkout/everest-workspace/everest-core/build/run-scripts/
 
-# ./run-sil.sh
+ping mqtt-server -n 4
 
-ping mqtt-server
+nmap -sT -p 1883 172.33.1.41 -Pn
+
+./run-sil.sh
