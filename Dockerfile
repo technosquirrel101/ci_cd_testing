@@ -4,7 +4,7 @@ ENV PORT 80
 
 RUN apt update && apt upgrade -y
 
-RUN apt install -y python3-pip git rsync wget cmake doxygen graphviz build-essential clang-tidy cppcheck maven openjdk-11-jdk npm docker docker-compose libboost-all-dev nodejs libssl-dev libsqlite3-dev clang-format curl rfkill
+RUN apt install -y python3-pip git rsync wget cmake doxygen graphviz build-essential clang-tidy cppcheck maven openjdk-11-jdk npm docker docker-compose libboost-all-dev nodejs libssl-dev libsqlite3-dev clang-format curl rfkill inetutils-ping
 
 RUN python3 -m pip install --upgrade pip setuptools wheel jstyleson jsonschema
 
