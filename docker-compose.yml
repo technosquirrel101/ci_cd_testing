@@ -23,7 +23,7 @@ services:
     image: eclipse-mosquitto:2.0.10
     container_name: mqtt-server
     networks:
-      - testing_network:
+      testing_network:
         - ipv4_address: 172.33.1.41
     ports:
       - 1883:1883
@@ -35,7 +35,7 @@ services:
     image: mariadb:10.4
     container_name: ocpp-db
     networks:
-      - testing_network:
+      testing_network:
         - ipv4_address: 172.33.1.42
     volumes:
       - ocpp-db-data:/var/lib/mysql
@@ -51,7 +51,7 @@ services:
     build: ./steve
     container_name: steve
     networks:
-      - testing_network:
+      testing_network:
         - ipv4_address: 172.33.1.43
     ports:
       - 8180:8180
@@ -63,7 +63,7 @@ services:
     image: nodered/node-redocpp-db
     container_name: nodered
     networks:
-      - testing_network:
+      testing_network:
         - ipv4_address: 172.33.1.44
     volumes:
       - node-red-data:/data
@@ -78,7 +78,7 @@ services:
     sysctls:
       - net.ipv6.conf.all.disable_ipv6=0
     networks:
-      - testing_network:
+      testing_network:
         - ipv4_address: 172.33.1.45
     ports:
       - 8849:8849
