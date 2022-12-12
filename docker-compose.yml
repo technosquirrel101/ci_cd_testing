@@ -9,14 +9,14 @@ volumes:
 networks:
   testing_network:
     # driver: bridge
-    enable_ipv6: true
+    # enable_ipv6: true
     ipam:
       driver: default
       config:
         - subnet: 172.33.1.0/24
           gateway: 172.33.1.1
-        - subnet: "FE80::/64"
-          gateway: "FE80::1"
+        # - subnet: "FE80::/64"
+        #   gateway: "FE80::1"
 
 services:
   mqtt-server:
