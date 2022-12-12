@@ -32,4 +32,6 @@ make -j$(nproc) install
 
 cd /checkout/everest-workspace/everest-core/build/run-scripts/
 
-./run-sil.sh
+# ./run-sil.sh
+
+ping 172.33.1.41
