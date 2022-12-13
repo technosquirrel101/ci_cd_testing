@@ -2,10 +2,6 @@
 
 mkdir -p /checkout/
 
-echo "export PATH=$PATH:/root/.local/bin" >> /root/.bashrc
-echo "export CPM_SOURCE_CACHE=/.cache/CPM" >> /root/.bashrc
-echo "export MQTT_SERVER_ADDRESS=mqtt-server" >> /root/.bashrc
-
 export PATH=$PATH:/root/.local/bin
 export CPM_SOURCE_CACHE=/.cache/CPM
 export MQTT_SERVER_ADDRESS=mqtt-server
@@ -32,8 +28,8 @@ make -j$(nproc) install
 
 cd /checkout/everest-workspace/everest-core/build/run-scripts/
 
-ping mqtt-server -c 4
+# ping mqtt-server -c 4
 
-nmap -sT -p 1883 172.33.1.41 -Pn
+# nmap -sT -p 1883 172.33.1.41 -Pn
 
 ./run-sil.sh
