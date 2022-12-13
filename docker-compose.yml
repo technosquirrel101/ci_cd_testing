@@ -29,7 +29,7 @@ services:
       - "172.33.1.1:1883:1883"
       - "172.33.1.1:9001:9001"
     volumes:
-      - ./mosquitto/mosquitto.conf:/mosquitto/esconfig/mosquitto.conf
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
 
   ocpp-db:
     image: mariadb:10.4
